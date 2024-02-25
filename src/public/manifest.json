@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "react chrome extension",
+	"name": "react chrome extension demo",
 	"description": "chrome extension in react!",
 	"version": "1.0.0",
 	"action": {
@@ -17,11 +17,22 @@
 	"background": {
 		"service_worker": "background.js"
 	},
-	"permissions": ["storage"],
+	"permissions": [
+		"sidePanel", 
+		"contextMenus"	
+	],
+	"host_permissions":[
+		"https://*/*",
+		"http://*/*"
+	],
+	"side_panel": {
+		"default_path": "sidePanel.html"
+	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["contentScript.js"]
+			"js": ["contentScript.js"],
+			"scss": ["contentScript.scss"]
 		}
 	]
 }

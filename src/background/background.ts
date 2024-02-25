@@ -1,6 +1,14 @@
-    chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-      sendResponse('receive message from background : ' + msg)
-      chrome.tabs.sendMessage(sender.tab.id, 'got your massage from background!')
-  
-    })
+//background.js
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'open-sidepanel',
+    title: 'Open blocks sidepanel',
+    contexts: ['selection']
+  });
+});
+
+chrome.contextMenus.onClicked.addListener((data, tab) => {
+  chrome.sidePanel.open({ windowId: tab.windowId });
+});
     
